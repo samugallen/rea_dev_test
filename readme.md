@@ -1,6 +1,6 @@
 # REA Dev Test
 
-The purpose of this project is to display the developer's knowledge of programming techniques.
+The purpose of this project is to display the developer's knowledge of programming techniques by displaying a list of properties delivered via json.
 
 ## Built With
 
@@ -9,6 +9,6 @@ The purpose of this project is to display the developer's knowledge of programmi
 * jQuery v3.3.1
 * Php v5.6.19
 
-### Installing
+## Installing
 
-Copy project files to the working directory of your php server then navigate to index.php
+Copy all project files to the working directory of your php server (httpdocs, htdocs) then navigate to rea_dev_test/index.php.
