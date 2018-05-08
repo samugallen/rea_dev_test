@@ -1,15 +1,14 @@
+/*  Base Styles */
 body {
     font-size: 14px;
     line-height: 1.4;
     color: #333;
 }
-
 .container {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
 }
-
 .column {
     width: 50%;
     float: left;
@@ -18,11 +17,11 @@ body {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-
 img {
     max-width: 100%;
 }
 
+/*  Property Tile cards */
 .property {
     padding: 15px;
 }
@@ -42,6 +41,10 @@ img {
     color: #fff;
     display: none;
 }
+.property .property-control-button.disabled {
+    background: #ddd;
+    color: #333;
+}
 #saved-properties .property .property-control-button {
     background: #500;
 }
@@ -53,8 +56,4 @@ img {
 }
 #saved-properties .property .property-control-button .add {
     display: none;
-}
-
-@media screen and (min-width: 767px) {
-
 }

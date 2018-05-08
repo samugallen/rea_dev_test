@@ -14,18 +14,19 @@ var devTest = {
     });
   },
   displayProperties: function(propertyData) {
-    // Loop through results and display the properties in the results column
+    // Loop through property data and display the properties in the results column
     for (i = 0; i < propertyData.results.length; i++) {
       devTest.propertyTemplate("#results", propertyData.results[i]);
     }
-    // Loop through results and display the properties in the saved column
+    // Loop through property data and display the properties in the saved column
     for (i = 0; i < propertyData.results.length; i++) {
       devTest.propertyTemplate("#saved-properties", propertyData.saved[i]);
     }
-    // Prepare property button functions
+    // Prepare property button functions now the properties are loaded
     devTest.propertyButtonControls();
   },
   propertyTemplate: function(target, property) {
+    // Ensure property exists and load the data into the template.
     if (property != undefined || property != null) {
       var propertyHTML =  "<div data-propertyID='property-" + property.id + "' class='property'>";
       propertyHTML +=       "<div class='property-header' style='background: " + property.agency.brandingColors.primary + ";'>";
@@ -44,10 +45,11 @@ var devTest = {
     }
   },
   propertyButtonControls: function() {
-    $('#results .property-control-button').on("click", function(e) {
+    // Button for saving the property
+    $(document).on("click", "#results .property-control-button", function(e) {
       e.preventDefault();
-      // Check if the property is already saved.
       var propertyID = $(this).closest(".property").attr("data-propertyID");
+      // Check if the property is already saved.
       if ($("#saved-properties .property[data-propertyID=" + propertyID + "]").length <= 0) {
         // Add the property to the saved list.
         $(this).closest(".property").clone().appendTo('#saved-properties');
@@ -55,6 +57,7 @@ var devTest = {
         $(this).addClass("disabled").find('span.add').html("Saved")
       }
     });
+    // Button for removing the property
     $(document).on("click", "#saved-properties .property-control-button", function() {
       var propertyID = $(this).closest(".property").attr("data-propertyID");
       // Remove the property
@@ -63,6 +66,6 @@ var devTest = {
       $("#results .property[data-propertyID=" + propertyID + "] .property-control-button").removeClass("disabled").find('span.add').html("Add Property")
     });
   }
-}
+};
 
 $(document).ready(devTest.init);
