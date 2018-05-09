@@ -18,7 +18,7 @@ Copy all project files to the working directory of your php server (httpdocs, ht
 Switch to test branch with:
 
 ```
-git checkout test
+git checkout tests
 ```
 
 Navigate to rea_dev_test/index.php and refresh the page. Check the javascript console for information.
