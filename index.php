@@ -2,11 +2,15 @@
 
   <section id="properties-list">
     <div class="container">
-      <div id="results" class="column">
+      <div class="column">
         <h2>Results</h2>
+        <div id="results">
+        </div>
       </div>
-      <div id="saved-properties" class="column">
+      <div class="column">
         <h2>Saved Properties</h2>
+        <div id="saved-properties">
+        </div>
       </div>
     </div>
   </section>
