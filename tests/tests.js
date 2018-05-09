@@ -1,11 +1,14 @@
+// Function performs a click event on a random button.
 function buttonClicks(target) {
   console.log("Click");
   var propertyLength = $(target + " .property").length;
-  var randProperty = Math.floor(Math.random() * propertyLength) + 1;
+  var randProperty = Math.floor(Math.random() * propertyLength);
+  var x = $(target + " .property .property-control-button").get(randProperty).attr("data-propertyID");
   console.log("Column: " + target);
   console.log("Total properties: " + propertyLength);
-  console.log("Property Clicked: " + randProperty);
-  $(target + " .property:nth-child(" + randProperty + "n) .property-control-button").click();
+  console.log("Property Clicked: " + x);
+  // Targets a random add or removed button based from either the results column or the saved properties column
+  $(target + " .property .property-control-button").get(randProperty).click();
 }
 
 $(document).ready(function() {
@@ -21,12 +24,12 @@ $(document).ready(function() {
 
     var clicks = setInterval(function() {
       // Once properties have loaded, perform a few test clicks
-      var targets = ["#results", "saved-properties"];
+      var targets = ["#results", "#saved-properties"];
       buttonClicks(targets[Math.floor(Math.random() * targets.length)]);
-    }, 10000);
+    }, 2000);
     setTimeout(function() {
       clearInterval(clicks)
-    }, 50000)
+    }, 10000)
   });
 
   // Test when Save Property button is pressed.
@@ -36,12 +39,17 @@ $(document).ready(function() {
     // Due to the order of events (i.e. the add function would happen AFTER the test checks if the element exists)
     // We add short timeout to ensure element has been added
     setTimeout(function() {
-      // Check if property exists in the saved properties column
-      // The outcome of this if can be toggled by removing lines 53-58 of assets/js/main.js
-      if ($("#saved-properties .property[data-propertyID=" + propertyID + "]").length > 0) {
-        console.log(propertyID + " saved");
+      // Check if the property button has been clicked already.
+      if (!$(this).hasClass("disabled")) {
+        // Check if property exists in the saved properties column
+        // The outcome of this if can be toggled by removing lines 53-58 of assets/js/main.js
+        if ($("#saved-properties .property[data-propertyID=" + propertyID + "]").length > 0) {
+          console.log(propertyID + " saved");
+        } else {
+          console.log(propertyID + " not saved");
+        }
       } else {
-        console.log(propertyID + " not saved");
+        console.log(propertyID + " already saved");
       }
     }, 200);
   });
